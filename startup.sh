@@ -23,6 +23,9 @@ case "${SUBNET}" in
         ;;
 esac
 
+echo "init debug"
+echo "$orchestrator $NETWORK $SUBNET"
+
 if [[ "${orchestrator}" == 'ecs' ]]; then
     case "${NETWORK}" in
       100)
@@ -66,7 +69,9 @@ if [[ "${orchestrator}" == 'kubernetes' ]]; then
     else
         zone=unknown
     fi
-fi 
+fi
+
+curl -m2 -s http://169.254.169.254/latest/dynamic/instance-identity/document
 
 if [[ ${orchestrator} == 'unknown' ]]; then
   zone=$(curl -m2 -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.availabilityZone' | grep -o .$)
