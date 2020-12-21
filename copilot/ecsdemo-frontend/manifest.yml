@@ -43,3 +43,8 @@ count: 2
 #environments:
 #  test:
 #    count: 2               # Number of tasks to run for the "test" environment.
+
+variables:
+  AWS_DEFAULT_REGION: $(echo $AWS_REGION)
+  CRYSTAL_URL: "http://ecsdemo-crystal.ecsworkshop.local:3000/crystal"
+  NODEJS_URL: "http://ecsdemo-nodejs.ecsworkshop.local:3000"
